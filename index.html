@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eclate Noire — Boutique</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  
+
+<div class="container">
+
+<header>
+  <div class="brand">
+    <div class="logo">EN</div>
+    <div>
+      <h1 class="flow-text">
+  <span>E</span><span>c</span><span>l</span><span>a</span><span>t</span><span>e</span> 
+  <span>N</span><span>o</span><span>i</span><span>r</span><span>e</span>
+</h1>
+      <p>Luxury boutique · handpicked selection</p>
+    </div>
+  </div>
+  <nav>
+    <a class="nav-link" href="#home">Home</a>
+    <a class="nav-link" href="#products">Shop</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#contact">Contact</a>
+  </nav>
+
+  <div class="galaxy-bg" id="galaxyBg"></div>
+
+  <style>
+.galaxy-bg {
+  position: fixed;   /* stays in place, behind content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* lets you interact with the page */
+  z-index: -1;         /* behind all content */
+  background: radial-gradient(ellipse at bottom, #0b0c1b 0%, #050515 100%);
+  overflow: hidden;
+}
+
+/* Stars inside galaxy container */
+.galaxy-bg .star-bg {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite alternate;
+}
+
+/* Comets inside galaxy container */
+.galaxy-bg .comet-bg {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px white;
+  animation: shoot 3s linear infinite;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes shoot {
+  0% { transform: translate(0,0) rotate(45deg); opacity:1; }
+  100% { transform: translate(100vw,100vh) rotate(45deg); opacity:0; }
+}
+
+
+.flow-text {
+  font-size: 70px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #ff3c00, #ffdd00, #00ffcc, #4a00e0, #ff3c00);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: flowGradient 20s linear infinite;
+}
+
+.flow-text span {
+  display: inline-block;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.flow-text span.active {
+  color: #ffffff;
+  text-shadow: 0 0 10px #ff3c00, 0 0 20px #ffdd00, 0 0 30px #00ffcc;
+}
+
+@keyframes flowGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.nav-link {
+position: relative;
+color: var(--muted);
+text-decoration: none;
+font-weight: 500;
+padding: 8px 12px;
+transition: all 0.3s ease;
+}
+
+
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+left: 0;
+bottom: 0;
+background: var(--purple);
+transition: width 0.3s ease;
+}
+
+
+.nav-link:hover {
+color: #fff;
+transform: translateY(-2px);
+}
+
+
+.nav-link:hover::after {
+width: 100%;
+}
+
+.cta {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+padding: 14px 22px;
+border-radius: 12px;
+background: linear-gradient(90deg, var(--purple), var(--purple-2));
+border: none;
+color: white;
+font-weight: 600;
+font-size: 16px;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.cta::after {
+content: '';
+position: absolute;
+left: -50%;
+top: -50%;
+width: 200%;
+height: 200%;
+background: rgba(255, 255, 255, 0.1);
+transform: rotate(45deg);
+transition: all 0.5s ease;
+}
+
+
+.cta:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 25px rgba(111, 45, 189, 0.4);
+}
+
+
+.cta:hover::after {
+left: 0;
+top: 0;
+}
+
+
+/* Floating Cart Container */
+.cart-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Inter', sans-serif;
+  z-index: 1000;
+}
+
+.cart-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.cart-count {
+  background: #ff3c00;
+  color: white;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 50%;
+  min-width: 25px;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.cart-count:hover {
+  background: #ff5733;
+  transform: scale(1.2);
+}
+
+/* Optional small bounce animation when items are added */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+
+.glow-subtitle {
+  font-size: 32px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  color: #fff; /* main text */
+  display: inline-block; /* keeps alignment intact */
+}
+
+.star {
+  display: inline-block;
+  color: #ffdd00;
+  position: relative;
+  animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0%, 100% {
+    text-shadow: 0 0 5px #ffdd00, 0 0 10px #ffdd00, 0 0 15px #ffdd00, 0 0 20px #fff8c0;
+  }
+  50% {
+    text-shadow: 0 0 15px #ffdd00, 0 0 25px #ffdd00, 0 0 35px #fff8c0, 0 0 50px #fff8c0;
+  }
+}
+
+</style>
+  <div class="actions">
+    <button class="icon-btn">🔍</button>
+    <button class="icon-btn">👤</button>
+  </div>
+</header>
+
+<main>
+  <!-- Home / Hero -->
+  <section id="home" class="hero">
+    <div class="hero-card">
+    <h2 class="glow-subtitle">
+  Black luxury, reimagined <span class="star">✨</span>
+</h2>
+      <p>Curated fashion and tech pieces with a premium touch. Handpicked. Limited drops. Timeless style.</p>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="cta" onclick="scrollToProducts()">Shop the Drop</button>
+        <div style="color:var(--muted);font-size:14px">Free shipping over ₹1999 · Easy returns</div>
+      </div>
+    </div>
+    <div class="hero-preview">
+      <img src="https://picsum.photos/620/420?grayscale&blur=2" alt="preview">
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products">
+    <div class="section-title">
+      <div>
+        <h3 style="margin:0">Featured Items</h3>
+        <div style="color:var(--muted);font-size:13px">Exclusive picks for this season</div>
+      </div>
+      <div style="color:var(--muted);font-size:14px">Sort: Popular ▾</div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about" style="margin:50px 0; position:relative; z-index:1;">
+  <h2 style="
+    font-family:'Inter',sans-serif; 
+    color:#fff; 
+    text-shadow: 0 0 10px #ff3c00, 0 0 20px #ffdd00;
+    text-align:center;
+  ">About Eclate Noire</h2>
+
+  <p style="
+    color:var(--muted); 
+    max-width:700px; 
+    margin:0 auto 20px; 
+    text-align:center;
+    line-height:1.6;
+  ">
+    Eclate Noire is a premium boutique offering carefully curated fashion and tech products. We focus on timeless luxury, quality materials, and exclusive drops that elevate your style.
+  </p>
+
+  <div style="position:relative; max-width:800px; margin:0 auto;">
+    <img src="https://picsum.photos/800/300?blur=1" 
+         style="
+          width:100%;
+          border-radius:16px;
+          margin-top:16px;
+          box-shadow: 0 0 20px rgba(255,255,255,0.1), 0 0 40px rgb(255, 255, 255);
+          transition: transform 0.3s, box-shadow 0.3s;
+         " 
+         onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 0 30px rgba(255,255,255,0.2),0 0 60px rgba(255,60,0,0.2)';" 
+         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 20px rgba(255,255,255,0.1),0 0 40px rgba(255,60,0,0.1)';">
+  </div>
+</section>
+
+
+  <!-- Contact -->
+<section id="contact" style="margin:50px 0; position:relative; z-index:1;">
+  <h2 style="text-align:center; font-family: 'Inter', sans-serif; color:#fff; text-shadow:0 0 10px #ff3c00,0 0 20px #ffdd00;">Contact Us</h2>
+  <p style="color:var(--muted);max-width:700px; margin:0 auto 20px; text-align:center;">
+    Have questions or need support? Reach out to us and we’ll get back to you as soon as possible.
+  </p>
+  <form style="display:flex;flex-direction:column;gap:10px;max-width:400px; margin:0 auto; padding:20px; border-radius:16px; background: rgba(255,255,255,0.05); box-shadow: 0 0 15px rgba(255,255,255,0.1);">
+    <input type="text" placeholder="Your Name" required 
+           style="padding:12px; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:#fff; outline:none; transition: 0.3s;">
+    <input type="email" placeholder="Your Email" required
+           style="padding:12px; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:#fff; outline:none; transition: 0.3s;">
+    <textarea placeholder="Message" rows="4" 
+           style="padding:12px; border-radius:8px; border:none; background: rgba(255,255,255,0.1); color:#fff; outline:none; transition:0.3s;"></textarea>
+    <button type="submit" class="btn-primary" 
+        style="
+          padding:12px; 
+          border-radius:12px; 
+          border:none; 
+          background: linear-gradient(90deg,#8e2de2,#4a00e0); 
+          color:white; 
+          font-weight:600; 
+          cursor:pointer; 
+          transition:0.3s; 
+          box-shadow: 0 0 10px rgba(142,45,226,0.5), 0 0 20px rgba(74,0,224,0.3);
+        "
+        onmouseover="this.style.boxShadow='0 0 20px rgba(142,45,226,0.7),0 0 40px rgba(74,0,224,0.5)'; transform='scale(1.05)';" 
+        onmouseout="this.style.boxShadow='0 0 10px rgba(142,45,226,0.5),0 0 20px rgba(74,0,224,0.3)'; transform='scale(1)';">
+  Send Message
+</button>
+
+  </form>
+</section>
+
+</main>
+
+<footer style="text-align:center; padding:20px 0; color:var(--muted); font-size:13px; display:flex; flex-direction:column; gap:6px; align-items:center;">
+  <div>
+    <strong>Eclate Noire</strong>
+    <div>© <span id="year"></span> All rights reserved</div>
+  </div>
+  <div>Made with ❤️ — Vedant & partner</div>
+</footer>
+
+
+<div class="cart-float" id="cartFloat" onclick="toggleCart()">
+  <div style="font-weight:700">🛒 Cart</div>
+  <div class="cart-count" id="cartCount">0</div>
+</div>
+
+<div id="cartModal" class="cart-modal" style="display:none">
+  <h4 style="margin:0 0 10px">Your Cart</h4>
+  <div id="cartItems" style="max-height:260px;overflow:auto"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+    <strong id="cartTotal">₹0</strong>
+    <button class="btn-primary" onclick="checkout()">Checkout</button>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').innerText = new Date().getFullYear();</script>
+<script>
+const letters = document.querySelectorAll('.flow-text span');
+let index = 0;
+
+function highlightLetter() {
+  letters.forEach(l => l.classList.remove('active'));
+  letters[index].classList.add('active');
+  index = (index + 1) % letters.length;
+}
+
+// Change highlight every 200ms for a smooth flowing effect
+setInterval(highlightLetter, 200);
+
+// Select the galaxy container
+const galaxy = document.getElementById('galaxyBg');
+
+// Generate stars
+const totalStars = 150;
+for(let i=0; i<totalStars; i++){
+  const star = document.createElement('div');
+  star.className = 'star-bg';
+  star.style.width = star.style.height = (Math.random()*2+1)+'px';
+  star.style.top = Math.random()*window.innerHeight+'px';
+  star.style.left = Math.random()*window.innerWidth+'px';
+  star.style.animationDuration = (Math.random()*2+2)+'s';
+  galaxy.appendChild(star);
+}
+
+// Generate comets
+function createComet(){
+  const comet = document.createElement('div');
+  comet.className = 'comet-bg';
+  comet.style.top = Math.random()*window.innerHeight/2+'px';
+  comet.style.left = '-50px';
+  comet.style.animationDuration = (2+Math.random()*2)+'s';
+  galaxy.appendChild(comet);
+  setTimeout(()=> comet.remove(), 4000);
+}
+setInterval(createComet, 1500);
+
+  // Neon glow on focus for inputs
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('focus', () => {
+      input.style.boxShadow = '0 0 10px #ffdd00, 0 0 20px #ff3c00';
+      input.style.background = 'rgba(255,255,255,0.15)';
+    });
+    input.addEventListener('blur', () => {
+      input.style.boxShadow = 'none';
+      input.style.background = 'rgba(255,255,255,0.1)';
+    });
+  });
+
+</script>
+
+</body>
+</html>

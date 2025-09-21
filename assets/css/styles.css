@@ -1,0 +1,72 @@
+:root{
+  --bg:#070607;
+  --card:#0f0e13;
+  --purple:#6f2dbd;
+  --purple-2:#4c1d8a;
+  --gold:#c9a34a;
+  --muted:#bdb7c8;
+  --glass: rgba(255,255,255,0.03);
+  --radius:16px;
+  --shadow: 0 6px 24px rgba(0,0,0,0.6);
+  --soft: 0.3s cubic-bezier(.2,.9,.2,1);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; padding:0; min-height:100%; background:linear-gradient(180deg,var(--bg),#0b0710 120%); color:#fff;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:1200px;margin:40px auto;padding:0 20px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--purple),var(--purple-2));display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(111,45,189,0.18);font-weight:700;font-size:18px}
+.brand h1{margin:0;font-size:20px;letter-spacing:0.6px}
+.brand p{margin:0;font-size:12px;color:var(--muted)}
+nav{display:flex;gap:14px;align-items:center}
+.nav-link{padding:8px 12px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:14px}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,0.03);transform:translateY(-3px)}
+.actions{display:flex;gap:10px;align-items:center}
+.icon-btn{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:12px;cursor:pointer}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:36px}
+.hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02)}
+.hero h2{font-size:36px;margin:0 0 10px}
+.hero p{color:var(--muted);margin:0 0 18px}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--purple),var(--purple-2));border:none;color:white;cursor:pointer;font-weight:600}
+.cta:hover{transform:translateY(-4px)}
+.hero-preview{border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(76,29,138,0.2)}
+.hero-preview img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* PRODUCTS */
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:10px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.product{background:var(--card);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.02);transition:transform var(--soft), box-shadow var(--soft);position:relative;overflow:hidden}
+.product:hover{transform:translateY(-8px);box-shadow:0 18px 50px rgba(0,0,0,0.6)}
+.product img{width:100%;height:160px;object-fit:cover;border-radius:10px}
+.badge{position:absolute;left:14px;top:14px;background:linear-gradient(90deg,var(--gold),#e1c57a);padding:6px 10px;border-radius:8px;color:#0b0710;font-weight:700;font-size:12px}
+.p-title{margin:10px 0 6px;font-weight:600}
+.p-price{color:var(--gold);font-weight:700}
+.p-meta{color:var(--muted);font-size:13px}
+.card-actions{display:flex;gap:8px;margin-top:10px}
+.btn{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);cursor:pointer}
+.btn:hover{color:#fff}
+.btn-primary{background:linear-gradient(90deg,var(--purple),var(--purple-2));color:white;border:none}
+
+/* CART FLOAT */
+.cart-float{position:fixed;right:24px;bottom:24px;background:linear-gradient(135deg,var(--purple),var(--purple-2));padding:12px 16px;border-radius:999px;box-shadow:0 18px 40px rgba(79,35,152,0.26);display:flex;align-items:center;gap:10px;cursor:pointer}
+.cart-count{background:var(--gold);color:#100a03;padding:6px 8px;border-radius:999px;font-weight:700}
+
+/* CART MODAL */
+.cart-modal{position:fixed;right:24px;bottom:90px;width:340px;background:var(--card);border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow)}
+
+/* FOOTER */
+footer{margin-top:40px;padding:24px;border-radius:14px;background:rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+
+/* RESPONSIVE */
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;}
+  .hero-preview{order:-1}
+  .container{padding:24px}
+}
